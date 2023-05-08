@@ -1,0 +1,7 @@
+---
+- name: Start_First_role
+  hosts: servers
+  become: yes
+  roles:
+           - test_role
+

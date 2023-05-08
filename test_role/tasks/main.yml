@@ -1,0 +1,24 @@
+---
+# tasks file for test_role
+- name: Task ping
+  ping:
+
+- name: Update cache
+  dnf:
+    update_cache: yes
+
+- name: Update only
+  dnf:
+    update_only: yes
+
+- name: Update all packages
+  dnf:
+    name: "*"
+    exclude: nginx
+    state: latest
+  register: update_all_packages
+
+- name: Reboot system
+  reboot:
+    msg: reboot system 
+  when: update_all_packages.changed
